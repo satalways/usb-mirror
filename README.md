@@ -4,31 +4,39 @@
 
 # USB Mirror
 
-USB Mirror is a Windows desktop utility for creating complete USB-drive backups and restoring raw disk images.
+USB Mirror is a Windows desktop utility for creating, mounting, and restoring USB-drive images.
 
 ## Features
 
 - Create a byte-for-byte `.img` backup of a USB drive.
-- Write `.img` and hybrid bootable `.iso` images to USB drives.
+- Create a fixed `.vhd` backup that Windows can mount and browse.
+- Export files from a single mounted USB volume to a Windows-mountable UDF `.iso` archive.
+- Write `.img`, fixed `.vhd`, and compatible hybrid `.iso` images to USB drives.
 - Preserve partition tables, boot records, filesystems, and unused sectors in IMG backups.
+- Validate completed backups before assigning their final filename.
 - Show live imaging progress with cancellation support.
-- Show the live percentage in the Windows title and taskbar preview.
+- Show the live percentage in the Windows title, taskbar progress bar, and taskbar icon badge.
 - Restrict device selection to USB disks and reject Windows boot/system disks.
 - Validate image size and sector alignment before writing.
 - Require explicit `ERASE` confirmation for destructive operations.
+- Provide detailed failures with the operation stage, byte offset, technical information, and a diagnostic log.
 
 ## Download
 
-Download the latest portable Windows package from [GitHub Releases](https://github.com/satalways/usb-mirror/releases/latest).
+Download the latest Windows packages from [GitHub Releases](https://github.com/satalways/usb-mirror/releases/latest).
 
-Use the ZIP package for normal installation:
+For a normal installation, download `USB-Mirror-Setup-v1.3.0.exe`. The installer includes the complete application, creates shortcuts, and provides uninstall support.
 
-1. Download the latest `USB-Mirror-Windows-x64` ZIP package.
+For portable use:
+
+1. Download `USB-Mirror-Windows-x64-v1.3.0.zip`.
 2. Extract the complete archive to a folder.
 3. Run `usb_mirror.exe` from inside that folder.
 4. Approve the Windows administrator prompt.
 
-The separately attached EXE is provided for convenience, but it still requires the DLL and `data` files contained in the ZIP package.
+Do not separate `usb_mirror.exe` from the DLL and `data` files included in the installed or portable package.
+
+The current packages are not code-signed, so Windows may display an **Unknown publisher** or SmartScreen warning. Verify the SHA-256 hashes shown in the release notes before running a downloaded package.
 
 ## Requirements
 
@@ -38,11 +46,22 @@ The separately attached EXE is provided for convenience, but it still requires t
 
 ## Important safety information
 
-Writing an IMG or ISO image permanently erases every partition and file on the selected USB disk. Confirm the physical disk name and capacity carefully before proceeding.
+Writing an IMG, VHD, or ISO image permanently erases every partition and file on the selected USB disk. Confirm the physical disk name and capacity carefully before proceeding.
 
-USB Mirror creates raw `.img` backups. It does not create ISO 9660/UDF files from USB drives; changing an IMG file's extension to `.iso` would not make it a true ISO image.
+IMG and VHD are complete disk backups. ISO export is a file-level archive from one mounted USB volume: it does not preserve the partition table, unused sectors, filesystem metadata, or arbitrary boot configuration. Changing an IMG file's extension to `.iso` does not convert it.
 
 ## Version history
+
+### Version 1.3.0
+
+- Added Windows-mountable fixed VHD backup and validated VHD-to-USB restoration.
+- Added Windows-mountable UDF ISO export for USB disks with one mounted volume.
+- Added a branded startup splash screen.
+- Added taskbar progress, percentage icon badges, and completion/error states.
+- Added a success alert with the verified output path.
+- Improved physical-disk reads and writes with precise byte-offset diagnostics and retries for transient I/O errors.
+- Added partial-file creation and exact-size validation so failed backups cannot appear complete.
+- Added a proper Windows installer alongside the complete portable ZIP package.
 
 ### Version 1.2.1
 
