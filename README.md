@@ -22,7 +22,7 @@ Download the latest portable Windows package from [GitHub Releases](https://gith
 
 Use the ZIP package for normal installation:
 
-1. Download `USB-Mirror-Windows-x64-v1.0.0.zip`.
+1. Download the latest `USB-Mirror-Windows-x64` ZIP package.
 2. Extract the complete archive to a folder.
 3. Run `usb_mirror.exe` from inside that folder.
 4. Approve the Windows administrator prompt.
@@ -40,6 +40,20 @@ The separately attached EXE is provided for convenience, but it still requires t
 Writing an IMG or ISO image permanently erases every partition and file on the selected USB disk. Confirm the physical disk name and capacity carefully before proceeding.
 
 USB Mirror creates raw `.img` backups. It does not create ISO 9660/UDF files from USB drives; changing an IMG file's extension to `.iso` would not make it a true ISO image.
+
+## Version history
+
+### Version 1.1.0
+
+- Added an About USB Mirror dialog.
+- Displays the installed application version and build number.
+- Added a direct link to this public repository for downloads, release notes, and documentation.
+
+### Version 1.0.0
+
+- Initial Windows release.
+- Added raw USB-to-IMG backup and IMG/ISO-to-USB restoration.
+- Added USB-only device checks, destructive-write confirmation, progress reporting, cancellation, and administrator elevation.
 
 ## Source code
 
