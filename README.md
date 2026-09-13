@@ -44,6 +44,12 @@ USB Mirror creates raw `.img` backups. It does not create ISO 9660/UDF files fro
 
 ## Version history
 
+### Version 1.2.1
+
+- Uses a fixed 920 × 640 application window sized for the working interface.
+- Centers the window when the application starts.
+- Disables resizing and maximizing to prevent awkward empty space or layout changes.
+
 ### Version 1.2.0
 
 - Shows live imaging percentage in the native Windows title, such as `USB Mirror — 47%`.
