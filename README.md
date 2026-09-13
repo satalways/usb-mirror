@@ -12,6 +12,7 @@ USB Mirror is a Windows desktop utility for creating complete USB-drive backups 
 - Write `.img` and hybrid bootable `.iso` images to USB drives.
 - Preserve partition tables, boot records, filesystems, and unused sectors in IMG backups.
 - Show live imaging progress with cancellation support.
+- Show the live percentage in the Windows title and taskbar preview.
 - Restrict device selection to USB disks and reject Windows boot/system disks.
 - Validate image size and sector alignment before writing.
 - Require explicit `ERASE` confirmation for destructive operations.
@@ -42,6 +43,12 @@ Writing an IMG or ISO image permanently erases every partition and file on the s
 USB Mirror creates raw `.img` backups. It does not create ISO 9660/UDF files from USB drives; changing an IMG file's extension to `.iso` would not make it a true ISO image.
 
 ## Version history
+
+### Version 1.2.0
+
+- Shows live imaging percentage in the native Windows title, such as `USB Mirror — 47%`.
+- Shows `Complete`, `Failed`, or `Canceled` in the title when processing ends.
+- Makes progress visible in Alt+Tab and the Windows taskbar preview while using another application.
 
 ### Version 1.1.1
 
