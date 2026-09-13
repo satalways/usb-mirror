@@ -43,6 +43,13 @@ USB Mirror creates raw `.img` backups. It does not create ISO 9660/UDF files fro
 
 ## Version history
 
+### Version 1.1.1
+
+- Fixed failures on the final raw-disk read when USB capacity is not an exact multiple of the copy buffer size.
+- Added persistent, selectable error details showing the failed processing stage and Windows exception.
+- Added diagnostic logs under `%LOCALAPPDATA%\\USB Mirror\\logs`.
+- Added checks for insufficient destination space and attempts to save an image onto the USB being backed up.
+
 ### Version 1.1.0
 
 - Added an About USB Mirror dialog.
