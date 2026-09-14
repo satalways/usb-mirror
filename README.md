@@ -15,21 +15,25 @@ USB Mirror is a Windows desktop utility for creating, mounting, and restoring US
 - Preserve partition tables, boot records, filesystems, and unused sectors in IMG backups.
 - Validate completed backups before assigning their final filename.
 - Show live imaging progress with cancellation support.
+- Show continuous progress while Windows prepares USB files and writes an ISO.
 - Show the live percentage in the Windows title, taskbar progress bar, and taskbar icon badge.
+- Show an immediate native splash while the application runtime loads.
 - Restrict device selection to USB disks and reject Windows boot/system disks.
 - Validate image size and sector alignment before writing.
 - Require explicit `ERASE` confirmation for destructive operations.
 - Provide detailed failures with the operation stage, byte offset, technical information, and a diagnostic log.
+- Lock USB volumes for reliable raw writes, then refresh restored volumes and
+  assign drive letters when Windows supports their filesystems.
 
 ## Download
 
 Download the latest Windows packages from [GitHub Releases](https://github.com/satalways/usb-mirror/releases/latest).
 
-For a normal installation, download `USB-Mirror-Setup-v1.3.0.exe`. The installer includes the complete application, creates shortcuts, and provides uninstall support.
+For a normal installation, download `USB-Mirror-Setup-v1.4.0.exe`. The installer includes the complete application, creates shortcuts, and provides uninstall support.
 
 For portable use:
 
-1. Download `USB-Mirror-Windows-x64-v1.3.0.zip`.
+1. Download `USB-Mirror-Windows-x64-v1.4.0.zip`.
 2. Extract the complete archive to a folder.
 3. Run `usb_mirror.exe` from inside that folder.
 4. Approve the Windows administrator prompt.
@@ -51,6 +55,23 @@ Writing an IMG, VHD, or ISO image permanently erases every partition and file on
 IMG and VHD are complete disk backups. ISO export is a file-level archive from one mounted USB volume: it does not preserve the partition table, unused sectors, filesystem metadata, or arbitrary boot configuration. Changing an IMG file's extension to `.iso` does not convert it.
 
 ## Version history
+
+### Version 1.4.0
+
+- Added exclusive USB-volume locking to prevent Windows from rejecting raw
+  image writes at byte offset zero.
+- Added a restore-success alert and automatic storage refresh and drive-letter
+  assignment for visible Windows-supported volumes.
+- Added an immediate native Windows splash so launch feedback appears before
+  the Flutter runtime finishes loading.
+- Added continuous ISO preparation progress instead of leaving long USB
+  staging operations at zero percent.
+- Added distinct ISO scanning, preparation, filesystem building, writing, and
+  verification statuses.
+- Fixed Unicode status corruption and decoding failures between Windows
+  PowerShell and the application.
+- Excluded protected Windows maintenance folders such as `System Volume
+  Information` and `$RECYCLE.BIN` from file-oriented ISO exports.
 
 ### Version 1.3.0
 
